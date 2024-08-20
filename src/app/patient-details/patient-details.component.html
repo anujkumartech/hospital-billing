@@ -1,0 +1,30 @@
+<app-header headerName="PATIENT BILLING DETAILS"></app-header>
+<div class="container mx-auto mt-5">
+    <div class="flex">
+      <div class="w-1/2 p-4 bg-gray-100">
+        <p><strong>Name:</strong> {{ patient.name }}</p>
+        <p><strong>Social Security Number:</strong> {{ patient.ssn }}</p>
+        <p><strong>Patient Since:</strong> {{ patient.joinedDate }}</p>
+        <p><strong>Total Dues:</strong> {{ patient.totalDue }}</p>
+  
+        <h2 class="mt-6 mb-2 text-xl font-bold bg-red-600 text-white p-2">DUE BILLS</h2>
+        <ul class="list-disc list-inside">
+          <li *ngFor="let bill of patient.dueBills" class="flex justify-between items-center mb-5">
+            <span>{{ bill.serviceName }}</span>
+            <button (click)="onSelectBill(bill)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">DETAILS</button>
+          </li>
+        </ul>
+      </div>
+  
+      <div *ngIf="selectedBill" class="w-1/2 p-4 bg-gray-200 ml-4 rounded">
+        <h2 class="text-xl font-bold">{{ selectedBill.serviceName }}</h2>
+        <p><strong>Service Date:</strong> {{ selectedBill.serviceDate }}</p>
+        <p><strong>Reason:</strong> {{ selectedBill.reason }}</p>
+        <p><strong>Drugs Prescribed:</strong> {{ selectedBill.drugsPrescribed.join(', ') || 'None' }}</p>
+        <p><strong>Total Due:</strong> {{ selectedBill.billAmount }}</p>
+  
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Resend Bill</button>
+      </div>
+    </div>
+  </div>
+  

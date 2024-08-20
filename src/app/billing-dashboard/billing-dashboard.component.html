@@ -1,0 +1,28 @@
+<app-header headerName="Billing Dashboard"></app-header>
+<section class="flex justify-between items-start pt-4">
+  <div class="w-1/2 mr-4">
+    <app-pie-chart></app-pie-chart>
+  </div>
+  <div class="w-1/2">
+      <app-line-chart></app-line-chart>
+  </div>
+</section>
+<section>
+    <div class="p-4">
+        <table class="min-w-full bg-gray-800 text-white rounded-lg overflow-hidden">
+          <thead>
+            <tr>
+              <th *ngFor="let header of tableHeaders" class="py-2 px-4 text-left bg-gray-900">{{ header }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of tableData" class="border-b border-gray-700 last:rounded-b-lg">
+                <td class="py-2 px-4">{{ row.id }}</td>
+                <td class="py-2 px-4">{{ row.patientName }}</td>
+                <td class="py-2 px-4">{{ row.pendingAmount }}</td>
+              <td class="py-2 px-4"><button (click)="onButtonClick(row)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">VIEW</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>      
+</section>
